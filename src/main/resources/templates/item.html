@@ -1,10 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-$END$
+
+<div th:replace="~{nav::navbar}"></div>
+
+<div class="detail">
+    <h2 >상세페이지</h2>
+    <img src="https://placehold.co/300">
+    <h4 th:text="${item.getName()}"></h4>
+    <p th:text="${item.getPrice() + '원'}"></p>
+</div>
 </body>
 </html>
