@@ -32,7 +32,7 @@ public class ItemController {
 
         return "redirect:list";
     }
-
+    
     @GetMapping("item/{id}")
     String detail(@PathVariable("id") Long id, Model model) {
         Optional<Item> byId = itemRepository.findById(id);
