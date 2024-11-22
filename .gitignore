@@ -200,3 +200,5 @@ Temporary Items
 hs_err_pid*
 replay_pid*
 
+# active profile properties
+src/main/resources/application-local.properties
