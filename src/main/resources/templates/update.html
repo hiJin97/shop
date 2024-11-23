@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+<div th:replace="~{nav::navbar}"></div>
+
+<form action="/update" method="post">
+    <h2>상품 수정 페이지</h2>
+    <img src="https://placehold.co/300">
+    <input type="hidden" name="id" th:value="${item.getId()}"/>
+    <div>
+        <label for="name">상품명 : </label>
+        <input type="text" name="name" id="name" th:value="${item.getName()}"/>
+    </div>
+    <div>
+        <label for="price">가격 : </label>
+        <input type="number" name="price" id="price" th:value="${item.getPrice()}"/>
+    </div>
+    <div>
+        <button type="submit">수정완료</button>
+        <a th:href="@{'/item/' + ${item.getId()}}">취소</a>
+    </div>
+</form>
+</body>
+</html>

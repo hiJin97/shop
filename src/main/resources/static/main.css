@@ -1,50 +1,88 @@
-.card {
-    margin : 30px auto;
-    display : flex;
-}
-.card img {
-    width : 150px;
-    margin-right : 20px;
+/* main.css */
+
+/* 공통 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* 연한 배경색 */
+    color: #343a40; /* 기본 글자색 */
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #007bff; /* 링크 기본 색상 */
+    transition: color 0.3s ease; /* 부드러운 색 변화 */
+}
+
+a:hover {
+    color: #0056b3; /* 호버 시 더 어두운 파란색 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .card {
+        gap: 10px;
+        padding: 10px;
+    }
+    .card div {
+        max-width: 100%;
+    }
+    .card h3 {
+        font-size: 18px;
+    }
+    .card p {
+        font-size: 14px;
+    }
+}
+
+
+/* nav.css */
 .nav {
     display: flex;
-    padding: 10px;
+    justify-content: space-between;
     align-items: center;
-    font-family : 'Montserrat';
+    background-color: #343a40; /* 다크 네비게이션 바 색상 */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    position: sticky; /* 스크롤 시 고정 */
+    top: 0;
+    z-index: 1000;
 }
-.nav a {
-    margin-right: 10px;
-    text-decoration : none;
-    font-weight : 400;
-    letter-spacing : -0.5px;
-}
+
 .nav .logo {
-    font-weight : 800;
+    font-size: 24px;
+    font-weight: bold;
+    color: #f8f9fa; /* 흰색 글자 */
+    text-decoration: none; /* 밑줄 제거 */
 }
 
-input, button {
-    padding : 8px 13px;
-    margin-top : 5px;
-    border : 1px solid grey;
-    border-radius : 4px;
-    vertical-align : middle;
-}
-button {
-    background : black;
-    color : white;
-    border : none;
-}
-input {
-    display : block;
+.nav a {
+    color: #f8f9fa; /* 흰색 글자 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin: 0 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 4px; /* 약간 둥근 모서리 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 애니메이션 */
 }
 
-.detail {
-    text-align : center;
+.nav a:hover {
+    background-color: #495057; /* 호버 시 어두운 배경 */
+    color: #ffffff; /* 호버 시 흰색 글자 */
 }
-.detail img{
-    max-width : 30%;
-    display : block;
-    margin : auto;
+
+.nav a:active {
+    background-color: #212529; /* 클릭 시 더 어두운 배경 */
+}
+
+/* 모바일 화면에서 네비게이션 바 정렬 */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav a {
+        margin: 5px 0;
+    }
 }

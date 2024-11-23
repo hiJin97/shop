@@ -27,4 +27,13 @@ public class ItemService {
         return itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Item Not found"));
     }
 
+    public void putItem(Item item) {
+        Item findItem = itemRepository.findById(item.getId()).orElseThrow(() -> new ItemNotFoundException("Item Not found"));
+
+        findItem.setName(item.getName());
+        findItem.setPrice(item.getPrice());
+
+        itemRepository.save(findItem);
+    }
+
 }
