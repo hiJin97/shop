@@ -1,6 +1,7 @@
 package com.dawn.shop;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemController {
 
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @GetMapping("/list")
     String list(Model model) {
-        model.addAttribute("items", itemRepository.findAll());
+        model.addAttribute("items", itemService.findAllItems());
         return "list";
     }
 
@@ -28,20 +29,18 @@ public class ItemController {
     @PostMapping("add_item")
     String addItem(@ModelAttribute Item item) {
 
-        itemRepository.save(item);
+        itemService.addItem(item);
 
         return "redirect:list";
     }
-    
+
     @GetMapping("item/{id}")
     String detail(@PathVariable("id") Long id, Model model) {
-        Optional<Item> byId = itemRepository.findById(id);
-        if (byId.isPresent()) {
-            model.addAttribute("item", byId.get());
-        } else {
-            return "redirect:list";
-        }
-        return "item";
+        Item findItem = itemService.findByIdItems(id);
+        model.addAttribute("item", findItem);
 
+        return "item";
     }
+
+
 }
