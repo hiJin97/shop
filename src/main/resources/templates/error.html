@@ -1,1 +1,19 @@
-<h4>에러페이지</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잘못된 접근</title>
+    <link rel="stylesheet" href="/error.css">
+</head>
+<body>
+<div class="error-container">
+    <div class="error-title">잘못된 접근입니다</div>
+    <p class="error-status" th:text="${status}">404 Not Found</p>
+    <p class="error-message" th:text="${message}">
+    </p>
+    <p>요청하신 페이지를 찾을 수 없습니다. 입력하신 URL을 확인해 주세요.</p>
+    <a href="/" class="home-link">홈으로 돌아가기</a>
+</div>
+</body>
+</html>
