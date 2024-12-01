@@ -1,12 +1,10 @@
-package com.dawn.shop;
+package com.dawn.shop.item;
 
 import com.dawn.shop.common.exception.ItemNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +32,12 @@ public class ItemService {
         findItem.setPrice(item.getPrice());
 
         itemRepository.save(findItem);
+    }
+
+    public void deleteItem(Long id) {
+        Item findItem = itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Item Not Found"));
+
+        itemRepository.delete(findItem);
     }
 
 }

@@ -19,7 +19,18 @@
             <h3 th:text="${item.getName()}"></h3>
         </a>
         <p th:text="${item.getPrice() + '원'}"></p>
+        <button class="btn" th:itemId="${item.getId()}" th:onclick="deleteItem(this.getAttribute('itemId'))">삭제</button>
     </div>
 </div>
+
+<script>
+    function deleteItem(id) {
+        if (confirm("삭제하시겠습니까?")) {
+            fetch("/delete?id=" + id);
+        }
+    }
+</script>
+
+
 </body>
 </html>

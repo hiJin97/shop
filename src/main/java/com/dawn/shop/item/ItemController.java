@@ -1,15 +1,13 @@
-package com.dawn.shop;
+package com.dawn.shop.item;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -58,4 +56,9 @@ public class ItemController {
         return "redirect:list";
     }
 
+    @GetMapping("/delete")
+    String deleteItem(@RequestParam Long id) {
+        itemService.deleteItem(id);
+        return "redirect:list";
+    }
 }
