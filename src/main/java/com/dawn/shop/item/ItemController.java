@@ -1,6 +1,7 @@
 package com.dawn.shop.item;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,8 +58,8 @@ public class ItemController {
     }
 
     @GetMapping("/delete")
-    String deleteItem(@RequestParam Long id) {
+    ResponseEntity<String> deleteItem(@RequestParam Long id) {
         itemService.deleteItem(id);
-        return "redirect:list";
+        return ResponseEntity.status(200).body("삭제완료");
     }
 }

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="signForm" action="/join" method="post">
+    <div>
+        <label for="username">아이디</label>
+        <input type="text" id="username" name="userName"/>
+        <button type="button" onclick="checkUsername()" id="checkUserName">중복확인</button>
+    </div>
+    <div>
+        <label for="password">비밀번호</label>
+        <input type="text" id="password" name="password">
+    </div>
+    <div>
+        <label for="display_name">닉네임</label>
+        <input type="text" id="display_name" name="displayName">
+    </div>
+
+    <button type="submit" id="registerBtn" disabled>회원가입</button>
+</form>
+<script>
+    function checkUsername() {
+        const username = document.getElementById('username').value;
+
+        if (!username) {
+            alert("ID를 입력해주세요.");
+        } else {
+            fetch('/api/member/check-username?userName=' + username)
+                .then(response => response.json())
+                .then(isAvailable => {
+                    if (isAvailable) {
+                        alert("사용가능한 아이디입니다.");
+                        document.getElementById('checkUserName').disabled = true;
+                    } else {
+                        alert('이미 사용 중인 아이디입니다.');
+                    }
+                });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const displayName = document.getElementById('display_name');
+        const submitBtn = document.getElementById('registerBtn');
+        const checkUserName = document.getElementById('checkUserName').disabled
+
+        function checkInputs() {
+            const isAllFilled = username.value.trim() && password.value.trim() && displayName.value.trim() && !checkUserName
+            submitBtn.disabled = !isAllFilled;
+        }
+
+        username.addEventListener('input', checkInputs)
+        password.addEventListener('input', checkInputs)
+        displayName.addEventListener('input', checkInputs)
+
+    });
+</script>
+</body>
+</html>
